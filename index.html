@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bernard Akumani - Data Analyst Portfolio</title>
+    <style>
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #7f8c8d;
+            --success: #2ecc71;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+        }
+
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a2530 100%);
+            color: white;
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+            opacity: 0.9;
+            color: var(--light);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            background-color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            height: 500px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* ===== SKILLS SECTION ===== */
+        .skills {
+            background-color: #f5f7fa;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-category h3 i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-item {
+            background-color: var(--light);
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        /* ===== EXPERIENCE SECTION ===== */
+        .experience {
+            background-color: white;
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .experience-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .experience-date {
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .experience-title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .experience-company {
+            font-style: italic;
+            color: var(--gray);
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .experience-description {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .experience-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .skill-tag {
+            background-color: var(--light);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--dark);
+        }
+
+        .experience-content ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .experience-content li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        /* ===== EDUCATION SECTION ===== */
+        .education {
+            background-color: #f5f7fa;
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .education-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            border-left: 4px solid var(--success);
+        }
+
+        .education-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .education-date {
+            font-weight: 600;
+            color: var(--success);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .education-title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .education-institution {
+            font-style: italic;
+            color: var(--gray);
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .education-description {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .education-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .education-content ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .education-content li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        /* ===== PROJECTS SECTION ===== */
+        .projects {
+            background-color: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .tech-tag {
+            background-color: var(--light);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--dark);
+        }
+
+        /* ===== CV SECTION ===== */
+        .cv-section {
+            background-color: white;
+        }
+
+        .cv-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cv-preview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .cv-image {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .cv-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .cv-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .cv-download h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .cv-download p {
+            color: #555;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .cv-btns {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            background-color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .cv-download-contact {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .cv-download-contact h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-item i {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--secondary);
+        }
+
+        .contact-item div h4 {
+            margin-bottom: 5px;
+        }
+
+        .contact-item div p {
+            margin: 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background-color: var(--secondary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary);
+            outline: none;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 768px) {
+            .about-content,
+            .contact-content,
+            .cv-preview {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero-btns,
+            .cv-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .about-image {
+                height: 400px;
+                order: -1;
+            }
+            
+            .cv-preview {
+                padding: 20px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- ===== HEADER SECTION ===== -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Bernard <span>The Analyst</span></a>
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#cv">CV</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Bernard Akumani</h1>
+                <h2>Data Analyst</h2>
+                <p>Transforming complex datasets into actionable insights that drive business decisions and growth.</p>
+                <div class="hero-btns">
+                    <a href="#projects" class="btn">View My Work</a>
+                    <a href="#contact" class="btn">Get In Touch</a>
+                    <a href="https://drive.google.com/file/d/17qLC4ndGOizcpokR_2Tu963qpaD4s9Hd/view?usp=drive_link" class="btn" target="_blank">
+                        <i class="fas fa-download"></i> Download CV
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT SECTION ===== -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+                <p>Data Analyst | Accounting & Finance | Python | SQL | Power BI | Driven Data Decisions</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Turning Data into Strategic Insights</h3>
+                    <p>I am developing my career as a Data Analyst, seeking opportunities to apply my analytical, financial, and technical skills to deliver data-driven solutions. With a background in Accounting and proficiency in Python, SQL, Pandas, Excel, and Power BI, I transform complex data into clear insights that guide business decisions.</p>
+                    <p>My passion for data began with a love of patterns and problem-solving and continues to grow as I strengthen my skills in analysis, visualization, and financial data interpretation.</p>
+                    <p>I aim to grow my expertise in data storytelling and visualization, especially through Power BI and Tableau, to support strategic and financial decision-making. Building on my foundation in Accounting and Data Analysis, I aspire to advance into a Financial Analyst role where I can combine technical and financial expertise to deliver insights that drive sustainable business growth.</p>
+                    <a href="#contact" class="btn">Let's Connect</a>
+                </div>
+                <div class="about-image">
+                    <img src="images/photo_2025-09-19_05-47-53.jpg" alt="Bernard Akumani - Data Analyst">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SKILLS SECTION ===== -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>Technical Skills</h2>
+                <p>A comprehensive toolkit for the entire data analysis pipeline</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programming & Languages</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Python</span>
+                        <span class="skill-item">Advanced Excel</span>
+                        <span class="skill-item">SQL</span>
+                        <span class="skill-item">Pandas</span>
+                        <span class="skill-item">NumPy</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-chart-bar"></i> Data Visualization</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Power BI</span>
+                        <span class="skill-item">Tableau</span>
+                        <span class="skill-item">Advanced Excel</span>
+                        <span class="skill-item">Matplotlib</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-database"></i> Data Management</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Data Cleaning</span>
+                        <span class="skill-item">Data Wrangling</span>
+                        <span class="skill-item">ETL Processes</span>
+                        <span class="skill-item">Statistical Analysis</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-users"></i> Professional Skills</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Data Storytelling</span>
+                        <span class="skill-item">Financial Analysis</span>
+                        <span class="skill-item">Problem-Solving</span>
+                        <span class="skill-item">Business Communication</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EXPERIENCE SECTION ===== -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Work Experience</h2>
+                <p>My professional journey in data analysis and financial services</p>
+            </div>
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <div class="experience-date">August – November 2025</div>
+                    <h3 class="experience-title">Data Analyst Bootcamp Graduate</h3>
+                    <div class="experience-company">Generation, Ghana</div>
+                    <p class="experience-description">Intensive training program focused on developing data analysis skills through hands-on projects and real-world scenarios.</p>
+                    <div class="experience-skills">
+                        <span class="skill-tag">Data Visualization</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Team Collaboration</span>
+                    </div>
+                    <ul class="experience-content">
+                        <li>Created and presented data visualizations using Tableau and Power BI</li>
+                        <li>Demonstrated strong teamwork and problem-solving skills through group projects</li>
+                        <li>Developed confidence in presenting complex data insights to stakeholders</li>
+                    </ul>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-date">February 2025 - August 2025</div>
+                    <h3 class="experience-title">Financial Consultant</h3>
+                    <div class="experience-company">Prudential Life Insurance Ghana, Accra</div>
+                    <p class="experience-description">Provided expert financial guidance and insurance solutions to clients while leveraging data analysis for strategic recommendations.</p>
+                    <div class="experience-skills">
+                        <span class="skill-tag">Financial Analysis</span>
+                        <span class="skill-tag">Market Research</span>
+                        <span class="skill-tag">Client Advisory</span>
+                        <span class="skill-tag">Strategic Planning</span>
+                    </div>
+                    <ul class="experience-content">
+                        <li>Advised clients on tailored financial and insurance solutions</li>
+                        <li>Conducted competitor and market analysis to recommend strategies</li>
+                        <li>Prepared client-focused reports with clear insights</li>
+                    </ul>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-date">September 2023 - December 2024</div>
+                    <h3 class="experience-title">Sales Officer</h3>
+                    <div class="experience-company">Enterprise Life Insurance (Cardinal Broker), Accra</div>
+                    <p class="experience-description">Applied analytical skills to improve sales strategies and customer engagement through data-driven insights.</p>
+                    <div class="experience-skills">
+                        <span class="skill-tag">Sales Analytics</span>
+                        <span class="skill-tag">Market Trends</span>
+                        <span class="skill-tag">Customer Relations</span>
+                        <span class="skill-tag">Data Reporting</span>
+                    </div>
+                    <ul class="experience-content">
+                        <li>Analyzed competitor products and market trends</li>
+                        <li>Prepared reports with data visualizations to guide decisions</li>
+                        <li>Communicated complex insurance information effectively</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EDUCATION SECTION ===== -->
+    <section class="education" id="education">
+        <div class="container">
+            <div class="section-title">
+                <h2>Education & Certifications</h2>
+                <p>My academic background and professional certifications</p>
+            </div>
+            <div class="education-grid">
+                <div class="education-card">
+                    <div class="education-date">November 2025</div>
+                    <h3 class="education-title">Data Analysis Program</h3>
+                    <div class="education-institution">Generation Ghana</div>
+                    <p class="education-description">Comprehensive data analysis training program focusing on practical skills and real-world applications.</p>
+                    <div class="education-skills">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Data Visualization</span>
+                    </div>
+                    <ul class="education-content">
+                        <li>Mastered data analysis techniques using Python and SQL</li>
+                        <li>Developed interactive dashboards with Power BI</li>
+                        <li>Completed hands-on projects simulating real business challenges</li>
+                        <li>Gained expertise in data cleaning, analysis, and visualization</li>
+                    </ul>
+                </div>
+                <div class="education-card">
+                    <div class="education-date">August 2025</div>
+                    <h3 class="education-title">Professional Foundation</h3>
+                    <div class="education-institution">ALX Africa</div>
+                    <p class="education-description">Professional development program focusing on building foundational skills for career advancement.</p>
+                    <div class="education-skills">
+                        <span class="skill-tag">Professional Skills</span>
+                        <span class="skill-tag">Leadership</span>
+                        <span class="skill-tag">Communication</span>
+                        <span class="skill-tag">Career Development</span>
+                    </div>
+                    <ul class="education-content">
+                        <li>Enhanced professional communication and presentation skills</li>
+                        <li>Developed leadership capabilities and teamwork strategies</li>
+                        <li>Gained insights into career planning and professional growth</li>
+                        <li>Built a strong foundation for continuous professional development</li>
+                    </ul>
+                </div>
+                <div class="education-card">
+                    <div class="education-date">August 2021</div>
+                    <h3 class="education-title">B.A Accounting and Chinese</h3>
+                    <div class="education-institution">University Of Ghana, Legon</div>
+                    <p class="education-description">Dual degree program combining accounting principles with Chinese language and cultural studies.</p>
+                    <div class="education-skills">
+                        <span class="skill-tag">Accounting</span>
+                        <span class="skill-tag">Financial Analysis</span>
+                        <span class="skill-tag">Chinese Language</span>
+                        <span class="skill-tag">Business Communication</span>
+                    </div>
+                    <ul class="education-content">
+                        <li>Developed strong foundation in accounting principles and financial analysis</li>
+                        <li>Acquired proficiency in Mandarin Chinese language</li>
+                        <li>Gained cross-cultural communication skills</li>
+                        <li>Enhanced analytical and problem-solving capabilities</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROJECTS SECTION ===== -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Projects</h2>
+                <p>Data analysis projects showcasing my skills and approach</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Banking Analysis">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Non-Performing Loans Analysis</h3>
+                        <p class="project-description">Used Python and Power BI to analyze banking sector loan data, identifying key risk factors and visualizing trends through an interactive dashboard.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">Data Visualization</span>
+                        </div>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Insurance Analytics">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Insurance Customer Analytics</h3>
+                        <p class="project-description">Analyzed customer data to identify retention patterns and developed strategies to improve customer lifetime value in the insurance sector.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Excel</span>
+                            <span class="tech-tag">Statistical Analysis</span>
+                            <span class="tech-tag">Customer Segmentation</span>
+                        </div>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Market Trends">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Market Trend Analysis</h3>
+                        <p class="project-description">Conducted comprehensive market analysis to identify emerging trends and provide data-backed recommendations for business strategy.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Web Scraping</span>
+                            <span class="tech-tag">Tableau</span>
+                            <span class="tech-tag">Trend Analysis</span>
+                        </div>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CV SECTION ===== -->
+    <section class="cv-section" id="cv">
+        <div class="container">
+            <div class="section-title">
+                <h2>Curriculum Vitae</h2>
+                <p>Download my complete CV for detailed information about my experience and qualifications</p>
+            </div>
+            <div class="cv-content">
+                <div class="cv-preview">
+                    <div class="cv-image">
+                        <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="CV Preview">
+                    </div>
+                    <div class="cv-download">
+                        <h3>Bernard Akumani - Data Analyst CV</h3>
+                        <p>Comprehensive overview of my skills, experience, and education</p>
+                        <div class="cv-btns">
+                            <a href="https://drive.google.com/file/d/17qLC4ndGOizcpokR_2Tu963qpaD4s9Hd/view?usp=drive_link" class="btn" target="_blank">
+                                <i class="fas fa-download"></i> Download PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>I'm actively seeking new opportunities and open to connecting</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Talk About Your Data Needs</h3>
+                    <p>I'm passionate about helping businesses make data-driven decisions. Whether you have a project in mind or just want to connect, I'd love to hear from you.</p>
+                    
+                    <div class="cv-download-contact">
+                        <h4>Download My CV</h4>
+                        <a href="https://drive.google.com/file/d/17qLC4ndGOizcpokR_2Tu963qpaD4s9Hd/view?usp=drive_link" class="btn" target="_blank" style="margin-top: 10px;">
+                            <i class="fas fa-download"></i> Download CV (PDF)
+                        </a>
+                    </div>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>akumanibernard17@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+233 (0) 541804270</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Lapaz, Accra, Ghana</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/bernard-akumani-7281991a7" class="social-link" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/Mr-Akumani" class="social-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:akumanibernard17@gmail.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form action="https://formspree.io/f/xdkwwbyq" method="POST" id="contactForm">
+                        <div class="form-group">
+                            <label for="name" style="display: block; margin-bottom: 5px; font-weight: 600;">Your Name:</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Enter your full name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" style="display: block; margin-bottom: 5px; font-weight: 600;">Your Email:</label>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email address" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject" style="display: block; margin-bottom: 5px; font-weight: 600;">Subject:</label>
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="What is this regarding?">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" style="display: block; margin-bottom: 5px; font-weight: 600;">Your Message:</label>
+                            <textarea class="form-control" name="message" id="message" placeholder="Tell me about your project or inquiry..." rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                        
+                        <div id="form-status" style="margin-top: 15px; display: none; padding: 10px; border-radius: 4px; text-align: center;"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER SECTION ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Bernard Akumani</h3>
+                    <p>Data Analyst & Financial Consultant specializing in transforming complex data into actionable business insights.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#education">Education</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#cv">CV</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Data Analysis</a></li>
+                        <li><a href="#">Business Intelligence</a></li>
+                        <li><a href="#">Financial Consulting</a></li>
+                        <li><a href="#">Data Visualization</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Bernard Akumani. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle functionality
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Enhanced form handling for Formspree
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const statusDiv = document.getElementById('form-status');
+            const originalText = submitBtn.textContent;
+            
+            // Show loading state
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            statusDiv.style.display = 'none';
+            
+            try {
+                const formData = new FormData(this);
+                
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Success
+                    statusDiv.textContent = '✅ Thank you! Your message has been sent successfully. I will get back to you soon.';
+                    statusDiv.style.backgroundColor = '#d4edda';
+                    statusDiv.style.color = '#155724';
+                    statusDiv.style.border = '1px solid #c3e6cb';
+                    statusDiv.style.display = 'block';
+                    this.reset();
+                } else {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Form submission failed');
+                }
+            } catch (error) {
+                // Show error message
+                statusDiv.innerHTML = '❌ Sorry, there was an error sending your message. Please try again or email me directly at <a href="mailto:akumanibernard17@gmail.com" style="color: #721c24; text-decoration: underline;">akumanibernard17@gmail.com</a>';
+                statusDiv.style.backgroundColor = '#f8d7da';
+                statusDiv.style.color = '#721c24';
+                statusDiv.style.border = '1px solid #f5c6cb';
+                statusDiv.style.display = 'block';
+                console.error('Form submission error:', error);
+            } finally {
+                // Reset button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                
+                // Auto-hide success message after 5 seconds
+                if (statusDiv.style.backgroundColor === '#d4edda') {
+                    setTimeout(() => {
+                        statusDiv.style.display = 'none';
+                    }, 5000);
+                }
+            }
+        });
+
+        // Optional: Add real-time validation
+        document.querySelectorAll('#contactForm input, #contactForm textarea').forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.hasAttribute('required') && !this.value.trim()) {
+                    this.style.borderColor = '#e74c3c';
+                } else {
+                    this.style.borderColor = '#ddd';
+                }
+            });
+            
+            input.addEventListener('input', function() {
+                if (this.value.trim()) {
+                    this.style.borderColor = '#2ecc71';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
