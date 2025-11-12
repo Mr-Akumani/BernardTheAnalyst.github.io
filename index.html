@@ -4,6 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bernard Akumani - Data Analyst Portfolio</title>
+    
+    <!-- ===== GOOGLE ANALYTICS & COOKIE CONSENT ===== -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7JB1CY5RMK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7JB1CY5RMK', {
+            'page_title': 'Bernard Akumani - Data Analyst Portfolio',
+            'page_location': window.location.href
+        });
+    </script>
+
+    <!-- Start cookieyes banner -->
+    <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/25827a57e11323b559ac8ccc/script.js"></script>
+    <!-- End cookieyes banner -->
+    <!-- ===== END TRACKING CODE ===== -->
+
     <style>
         /* ===== RESET & BASE STYLES ===== */
         * {
@@ -56,6 +75,17 @@
         .btn:hover {
             background-color: var(--primary);
             transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: white;
         }
 
         section {
@@ -491,6 +521,12 @@
             color: var(--dark);
         }
 
+        .project-btns {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
         /* ===== CV SECTION ===== */
         .cv-section {
             background-color: white;
@@ -764,7 +800,8 @@
             }
             
             .hero-btns,
-            .cv-btns {
+            .cv-btns,
+            .project-btns {
                 flex-direction: column;
                 align-items: center;
             }
@@ -791,14 +828,14 @@
                     <i class="fas fa-bars"></i>
                 </div>
                 <ul class="nav-links" id="navLinks">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#cv">CV</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#home" onclick="trackNavClick('Home')">Home</a></li>
+                    <li><a href="#about" onclick="trackNavClick('About')">About</a></li>
+                    <li><a href="#skills" onclick="trackNavClick('Skills')">Skills</a></li>
+                    <li><a href="#experience" onclick="trackNavClick('Experience')">Experience</a></li>
+                    <li><a href="#education" onclick="trackNavClick('Education')">Education</a></li>
+                    <li><a href="#projects" onclick="trackNavClick('Projects')">Projects</a></li>
+                    <li><a href="#cv" onclick="trackNavClick('CV')">CV</a></li>
+                    <li><a href="#contact" onclick="trackNavClick('Contact')">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -812,9 +849,9 @@
                 <h2>Data Analyst</h2>
                 <p>Transforming complex datasets into actionable insights that drive business decisions and growth.</p>
                 <div class="hero-btns">
-                    <a href="#projects" class="btn">View My Work</a>
-                    <a href="#contact" class="btn">Get In Touch</a>
-                    <a href="https://drive.google.com/file/d/17qLC4ndGOizcpokR_2Tu963qpaD4s9Hd/view?usp=drive_link" class="btn" target="_blank">
+                    <a href="#projects" class="btn" onclick="trackButtonClick('View My Work')">View My Work</a>
+                    <a href="#contact" class="btn" onclick="trackButtonClick('Get In Touch')">Get In Touch</a>
+                    <a href="https://drive.google.com/file/d/17qLC4ndGOizcpokR_2Tu963qpaD4s9Hd/view?usp=drive_link" class="btn" target="_blank" onclick="trackButtonClick('Download CV')">
                         <i class="fas fa-download"></i> Download CV
                     </a>
                 </div>
@@ -835,7 +872,7 @@
                     <p>I am developing my career as a Data Analyst, seeking opportunities to apply my analytical, financial, and technical skills to deliver data-driven solutions. With a background in Accounting and proficiency in Python, SQL, Pandas, Excel, and Power BI, I transform complex data into clear insights that guide business decisions.</p>
                     <p>My passion for data began with a love of patterns and problem-solving and continues to grow as I strengthen my skills in analysis, visualization, and financial data interpretation.</p>
                     <p>I aim to grow my expertise in data storytelling and visualization, especially through Power BI and Tableau, to support strategic and financial decision-making. Building on my foundation in Accounting and Data Analysis, I aspire to advance into a Financial Analyst role where I can combine technical and financial expertise to deliver insights that drive sustainable business growth.</p>
-                    <a href="#contact" class="btn">Let's Connect</a>
+                    <a href="#contact" class="btn" onclick="trackButtonClick('Lets Connect')">Let's Connect</a>
                 </div>
                 <div class="about-image">
                     <img src="images/Profile.jpg" alt="Bernard Akumani - Data Analyst">
@@ -1030,38 +1067,55 @@
                 <p>Data analysis projects showcasing my skills and approach</p>
             </div>
             <div class="projects-grid">
+                <!-- Project 1: Ghana Adventures -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Banking Analysis">
+                        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Ghana Adventures Analytics">
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Non-Performing Loans Analysis</h3>
-                        <p class="project-description">Used Python and Power BI to analyze banking sector loan data, identifying key risk factors and visualizing trends through an interactive dashboard.</p>
+                        <h3 class="project-title">Ghana Adventures Customer & Booking Analytics</h3>
+                        <p class="project-description">Developed a comprehensive data analysis and business intelligence solution using Excel and Power BI to evaluate booking patterns, tour performance, and customer loyalty. Analyzed booking, revenue, and regional data to uncover seasonal trends, top tours, and repeat customer behavior.</p>
                         <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Pandas</span>
-                            <span class="tech-tag">Power BI</span>
-                            <span class="tech-tag">Data Visualization</span>
-                        </div>
-                        <a href="#" class="btn">View Project</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Insurance Analytics">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Insurance Customer Analytics</h3>
-                        <p class="project-description">Analyzed customer data to identify retention patterns and developed strategies to improve customer lifetime value in the insurance sector.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">SQL</span>
                             <span class="tech-tag">Excel</span>
-                            <span class="tech-tag">Statistical Analysis</span>
-                            <span class="tech-tag">Customer Segmentation</span>
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">Data Analysis</span>
+                            <span class="tech-tag">Business Intelligence</span>
+                            <span class="tech-tag">Customer Analytics</span>
                         </div>
-                        <a href="#" class="btn">View Project</a>
+                        <div class="project-btns">
+                            <a href="https://drive.google.com/file/d/1KYwwgUtb-G-tvXt3KmyekuEedQ34KC01/view?usp=sharing" class="btn" target="_blank" onclick="trackProjectClick('Ghana Adventures Analytics')">View Project</a>
+                            <a href="https://github.com/Mr-Akumani/Ghana-Adventures-Business-Analysis" class="btn btn-outline" target="_blank" onclick="trackProjectClick('Ghana Adventures Documentation')">
+                                <i class="fab fa-github"></i> Documentation
+                            </a>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Project 2: Nairobi Connect -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Nairobi Connect Solutions Analytics">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Nairobi Connect Solutions – Service Quality Analytics</h3>
+                        <p class="project-description">Revolutionized service delivery by pinpointing critical bottlenecks in real-time operations. Our analysis revealed Data Entry processes were causing 45% delays and 30% accuracy gaps. Transformed raw data into strategic insights that optimized workflows, boosted efficiency, and enhanced client satisfaction through targeted process improvements.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">Excel</span>
+                            <span class="tech-tag">Operational Analytics</span>
+                            <span class="tech-tag">Process Optimization</span>
+                            <span class="tech-tag">Quality Metrics</span>
+                        </div>
+                        <div class="project-btns">
+                            <a href="https://drive.google.com/file/d/1HvuuP0R7pcBtdSi2hQpH25wAXcXlYzg_/view?usp=sharing" class="btn" target="_blank" onclick="trackProjectClick('Nairobi Connect Solutions Analytics')">View Project</a>
+                            <a href="https://github.com/Mr-Akumani/Nairobi-Connect-Solutions-Analysis" class="btn btn-outline" target="_blank" onclick="trackProjectClick('Nairobi Connect Documentation')">
+                                <i class="fab fa-github"></i> Documentation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Market Trends (Placeholder) -->
                 <div class="project-card">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Market Trends">
@@ -1075,7 +1129,12 @@
                             <span class="tech-tag">Tableau</span>
                             <span class="tech-tag">Trend Analysis</span>
                         </div>
-                        <a href="#" class="btn">View Project</a>
+                        <div class="project-btns">
+                            <a href="#" class="btn" onclick="trackProjectClick('Market Trend Analysis')">View Project</a>
+                            <a href="https://github.com/Mr-Akumani/market-trend-analysis" class="btn btn-outline" target="_blank" onclick="trackProjectClick('Market Trend Analysis Documentation')">
+                                <i class="fab fa-github"></i> Documentation
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1098,7 +1157,7 @@
                         <h3>Bernard Akumani - Data Analyst CV</h3>
                         <p>Comprehensive overview of my skills, experience, and education</p>
                         <div class="cv-btns">
-                            <a href="https://drive.google.com/file/d/17qLC4ndGOizcpokR_2Tu963qpaD4s9Hd/view?usp=drive_link" class="btn" target="_blank">
+                            <a href="https://drive.google.com/file/d/17qLC4ndGOizcpokR_2Tu963qpaD4s9Hd/view?usp=drive_link" class="btn" target="_blank" onclick="trackButtonClick('Download CV Section')">
                                 <i class="fas fa-download"></i> Download PDF
                             </a>
                         </div>
@@ -1122,7 +1181,7 @@
                     
                     <div class="cv-download-contact">
                         <h4>Download My CV</h4>
-                        <a href="https://drive.google.com/file/d/17qLC4ndGOizcpokR_2Tu963qpaD4s9Hd/view?usp=drive_link" class="btn" target="_blank" style="margin-top: 10px;">
+                        <a href="https://drive.google.com/file/d/17qLC4ndGOizcpokR_2Tu963qpaD4s9Hd/view?usp=drive_link" class="btn" target="_blank" style="margin-top: 10px;" onclick="trackButtonClick('Download CV Contact')">
                             <i class="fas fa-download"></i> Download CV (PDF)
                         </a>
                     </div>
@@ -1152,13 +1211,13 @@
                     </div>
                     
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/in/bernard-akumani-7281991a7" class="social-link" target="_blank">
+                        <a href="https://www.linkedin.com/in/bernard-akumani-7281991a7" class="social-link" target="_blank" onclick="trackSocialClick('LinkedIn')">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a href="https://github.com/Mr-Akumani" class="social-link" target="_blank">
+                        <a href="https://github.com/Mr-Akumani" class="social-link" target="_blank" onclick="trackSocialClick('GitHub')">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="mailto:akumanibernard17@gmail.com" class="social-link">
+                        <a href="mailto:akumanibernard17@gmail.com" class="social-link" onclick="trackSocialClick('Email')">
                             <i class="fas fa-envelope"></i>
                         </a>
                     </div>
@@ -1186,7 +1245,7 @@
                             <textarea class="form-control" name="message" id="message" placeholder="Tell me about your project or inquiry..." rows="5" required></textarea>
                         </div>
                         
-                        <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                        <button type="submit" class="btn" style="width: 100%;" onclick="trackFormSubmission()">Send Message</button>
                         
                         <div id="form-status" style="margin-top: 15px; display: none; padding: 10px; border-radius: 4px; text-align: center;"></div>
                     </form>
@@ -1206,22 +1265,22 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#skills">Skills</a></li>
-                        <li><a href="#experience">Experience</a></li>
-                        <li><a href="#education">Education</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#cv">CV</a></li>
+                        <li><a href="#home" onclick="trackNavClick('Home')">Home</a></li>
+                        <li><a href="#about" onclick="trackNavClick('About')">About</a></li>
+                        <li><a href="#skills" onclick="trackNavClick('Skills')">Skills</a></li>
+                        <li><a href="#experience" onclick="trackNavClick('Experience')">Experience</a></li>
+                        <li><a href="#education" onclick="trackNavClick('Education')">Education</a></li>
+                        <li><a href="#projects" onclick="trackNavClick('Projects')">Projects</a></li>
+                        <li><a href="#cv" onclick="trackNavClick('CV')">CV</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Services</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Data Analysis</a></li>
-                        <li><a href="#">Business Intelligence</a></li>
-                        <li><a href="#">Financial Consulting</a></li>
-                        <li><a href="#">Data Visualization</a></li>
+                        <li><a href="#" onclick="trackServiceClick('Data Analysis')">Data Analysis</a></li>
+                        <li><a href="#" onclick="trackServiceClick('Business Intelligence')">Business Intelligence</a></li>
+                        <li><a href="#" onclick="trackServiceClick('Financial Consulting')">Financial Consulting</a></li>
+                        <li><a href="#" onclick="trackServiceClick('Data Visualization')">Data Visualization</a></li>
                     </ul>
                 </div>
             </div>
@@ -1232,6 +1291,56 @@
     </footer>
 
     <script>
+        // ===== GOOGLE ANALYTICS TRACKING FUNCTIONS =====
+        function trackNavClick(section) {
+            gtag('event', 'navigation_click', {
+                'event_category': 'Navigation',
+                'event_label': section,
+                'value': 1
+            });
+        }
+
+        function trackProjectClick(projectName) {
+            gtag('event', 'project_click', {
+                'event_category': 'Projects',
+                'event_label': projectName,
+                'value': 1
+            });
+        }
+
+        function trackSocialClick(platform) {
+            gtag('event', 'social_click', {
+                'event_category': 'Social Media',
+                'event_label': platform,
+                'value': 1
+            });
+        }
+
+        function trackServiceClick(service) {
+            gtag('event', 'service_click', {
+                'event_category': 'Services',
+                'event_label': service,
+                'value': 1
+            });
+        }
+
+        function trackButtonClick(buttonName) {
+            gtag('event', 'button_click', {
+                'event_category': 'CTA Buttons',
+                'event_label': buttonName,
+                'value': 1
+            });
+        }
+
+        function trackFormSubmission() {
+            gtag('event', 'form_submission', {
+                'event_category': 'Contact',
+                'event_label': 'Contact Form',
+                'value': 1
+            });
+        }
+
+        // ===== EXISTING FUNCTIONALITY =====
         // Mobile menu toggle functionality
         document.getElementById('menuToggle').addEventListener('click', function() {
             document.getElementById('navLinks').classList.toggle('active');
@@ -1338,6 +1447,4 @@
         });
     </script>
 </body>
-
 </html>
-
