@@ -14,8 +14,124 @@
         gtag('js', new Date());
         gtag('config', 'G-7JB1CY5RMK', {
             'page_title': 'Bernard Akumani - Data Analyst Portfolio',
-            'page_location': window.location.href
+            'page_location': window.location.href,
+            'debug_mode': true  // Added for immediate testing
         });
+
+        // ===== ENHANCED PORTFOLIO TRACKING FUNCTIONS =====
+        function trackPortfolioEvent(eventName, parameters) {
+            console.log(`🎯 ANALYTICS EVENT: ${eventName}`, parameters); // Immediate console feedback
+            gtag('event', eventName, {
+                'event_category': 'Portfolio Engagement',
+                'event_label': parameters.event_label || 'General',
+                'value': parameters.value || 1,
+                ...parameters
+            });
+        }
+
+        // Enhanced Navigation Tracking
+        function trackNavClick(section) {
+            trackPortfolioEvent('navigation_click', {
+                'event_label': section,
+                'link_destination': section.toLowerCase(),
+                'user_engagement': 'high'
+            });
+        }
+
+        // Project View Tracking
+        function trackProjectView(projectName, projectType = 'data_analysis') {
+            trackPortfolioEvent('project_view', {
+                'event_label': projectName,
+                'project_type': projectType,
+                'project_category': 'portfolio_project',
+                'engagement_level': 'high'
+            });
+        }
+
+        // Enhanced GitHub Tracking
+        function trackGitHubVisit(projectName, linkLocation = 'project_card') {
+            trackPortfolioEvent('github_visit', {
+                'event_label': projectName,
+                'link_location': linkLocation,
+                'link_type': 'external_repository',
+                'content_type': 'code_documentation'
+            });
+        }
+
+        // Enhanced CV Download Tracking
+        function trackCVDownload(location, fileType = 'pdf') {
+            trackPortfolioEvent('cv_download', {
+                'event_label': location,
+                'file_type': fileType,
+                'download_location': location.toLowerCase(),
+                'content_type': 'resume'
+            });
+        }
+
+        // Social Media Tracking
+        function trackSocialClick(platform, location = 'contact_section') {
+            trackPortfolioEvent('social_click', {
+                'event_label': platform,
+                'social_platform': platform.toLowerCase(),
+                'click_location': location,
+                'engagement_type': 'social_outbound'
+            });
+        }
+
+        // Email Click Tracking
+        function trackEmailClick(location = 'contact_section') {
+            trackPortfolioEvent('email_click', {
+                'event_label': 'Direct Email',
+                'contact_method': 'email',
+                'click_location': location,
+                'engagement_type': 'direct_contact'
+            });
+        }
+
+        // Service Interest Tracking
+        function trackServiceClick(service) {
+            trackPortfolioEvent('service_interest', {
+                'event_label': service,
+                'service_category': service.toLowerCase(),
+                'interest_level': 'medium',
+                'engagement_type': 'service_inquiry'
+            });
+        }
+
+        // CTA Button Tracking
+        function trackButtonClick(buttonName, location = 'hero_section') {
+            trackPortfolioEvent('cta_click', {
+                'event_label': buttonName,
+                'button_location': location,
+                'cta_type': buttonName.toLowerCase().includes('view') ? 'view_work' : 'get_in_touch',
+                'engagement_level': 'high'
+            });
+        }
+
+        // Form Interaction Tracking
+        function trackFormSubmission() {
+            trackPortfolioEvent('contact_form_submit', {
+                'event_label': 'Contact Form',
+                'form_type': 'general_inquiry',
+                'submission_status': 'success',
+                'engagement_level': 'high'
+            });
+        }
+
+        function trackFormStart() {
+            trackPortfolioEvent('contact_form_start', {
+                'event_label': 'Form Engagement Started',
+                'interaction_type': 'form_focus'
+            });
+        }
+
+        function trackFormFieldFocus(fieldName) {
+            trackPortfolioEvent('form_field_focus', {
+                'event_label': fieldName,
+                'field_type': fieldName.toLowerCase(),
+                'interaction_depth': 'field_level'
+            });
+        }
     </script>
 
     <!-- Start cookieyes banner -->
@@ -276,7 +392,7 @@
             background-color: white;
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
         }
 
@@ -325,7 +441,7 @@
             background-color: white;
             border-radius: 8px;
             padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
             border-left: 4px solid var(--secondary);
         }
@@ -400,7 +516,7 @@
             background-color: white;
             border-radius: 8px;
             padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
             border-left: 4px solid var(--success);
         }
@@ -467,7 +583,7 @@
             background-color: white;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
         }
 
@@ -545,7 +661,7 @@
             background-color: #f9f9f9;
             padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px15px rgba(0, 0, 0, 0.05);
         }
 
         .cv-image {
@@ -849,8 +965,8 @@
                 <h2>Data Analyst</h2>
                 <p>Transforming complex datasets into actionable insights that drive business decisions and growth.</p>
                 <div class="hero-btns">
-                    <a href="#projects" class="btn" onclick="trackButtonClick('View My Work')">View My Work</a>
-                    <a href="#contact" class="btn" onclick="trackButtonClick('Get In Touch')">Get In Touch</a>
+                    <a href="#projects" class="btn" onclick="trackButtonClick('View My Work', 'hero_section')">View My Work</a>
+                    <a href="#contact" class="btn" onclick="trackButtonClick('Get In Touch', 'hero_section')">Get In Touch</a>
                     <a href="https://drive.google.com/file/d/1EDT7s2ltraLS75FII1XA3qCOOnrKoOYs/view?usp=sharing" class="btn" target="_blank" onclick="trackCVDownload('Hero Section')">
                         <i class="fas fa-download"></i> Download CV
                     </a>
@@ -872,7 +988,7 @@
                     <p>I am developing my career as a Data Analyst, seeking opportunities to apply my analytical, financial, and technical skills to deliver data-driven solutions. With a background in Accounting and proficiency in Python, SQL, Pandas, Excel, and Power BI, I transform complex data into clear insights that guide business decisions.</p>
                     <p>My passion for data began with a love of patterns and problem-solving and continues to grow as I strengthen my skills in analysis, visualization, and financial data interpretation.</p>
                     <p>I aim to grow my expertise in data storytelling and visualization, especially through Power BI and Tableau, to support strategic and financial decision-making. Building on my foundation in Accounting and Data Analysis, I aspire to advance into a Financial Analyst role where I can combine technical and financial expertise to deliver insights that drive sustainable business growth.</p>
-                    <a href="#contact" class="btn" onclick="trackButtonClick('Lets Connect')">Let's Connect</a>
+                    <a href="#contact" class="btn" onclick="trackButtonClick('Lets Connect', 'about_section')">Let's Connect</a>
                 </div>
                 <div class="about-image">
                     <img src="images/Profile.jpg" alt="Bernard Akumani - Data Analyst">
@@ -1068,7 +1184,7 @@
             </div>
             <div class="projects-grid">
                 <!-- Project 1: Ghana Adventures -->
-                <div class="project-card">
+                <div class="project-card" data-project-name="Ghana Adventures Customer & Booking Analytics" data-project-type="business_intelligence" data-project-category="tourism_analytics">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Ghana Adventures Analytics">
                     </div>
@@ -1083,8 +1199,8 @@
                             <span class="tech-tag">Customer Analytics</span>
                         </div>
                         <div class="project-btns">
-                            <a href="https://drive.google.com/file/d/1KYwwgUtb-G-tvXt3KmyekuEedQ34KC01/view?usp=sharing" class="btn" target="_blank" onclick="trackProjectView('Ghana Adventures Analytics')">View Project</a>
-                            <a href="https://github.com/Mr-Akumani/Ghana-Adventures-Business-Analysis" class="btn btn-outline" target="_blank" onclick="trackGitHubVisit('Ghana Adventures Documentation')">
+                            <a href="https://drive.google.com/file/d/1KYwwgUtb-G-tvXt3KmyekuEedQ34KC01/view?usp=sharing" class="btn" target="_blank" onclick="trackProjectView('Ghana Adventures Analytics', 'business_intelligence')">View Project</a>
+                            <a href="https://github.com/Mr-Akumani/Ghana-Adventures-Business-Analysis" class="btn btn-outline" target="_blank" onclick="trackGitHubVisit('Ghana Adventures Documentation', 'project_card')">
                                 <i class="fab fa-github"></i> Documentation
                             </a>
                         </div>
@@ -1092,7 +1208,7 @@
                 </div>
 
                 <!-- Project 2: Nairobi Connect -->
-                <div class="project-card">
+                <div class="project-card" data-project-name="Nairobi Connect Solutions – Service Quality Analytics" data-project-type="operational_analytics" data-project-category="service_optimization">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Nairobi Connect Solutions Analytics">
                     </div>
@@ -1107,8 +1223,8 @@
                             <span class="tech-tag">Quality Metrics</span>
                         </div>
                         <div class="project-btns">
-                            <a href="https://drive.google.com/file/d/1HvuuP0R7pcBtdSi2hQpH25wAXcXlYzg_/view?usp=sharing" class="btn" target="_blank" onclick="trackProjectView('Nairobi Connect Solutions Analytics')">View Project</a>
-                            <a href="https://github.com/Mr-Akumani/Nairobi-Connect-Solutions-Analysis" class="btn btn-outline" target="_blank" onclick="trackGitHubVisit('Nairobi Connect Documentation')">
+                            <a href="https://drive.google.com/file/d/1HvuuP0R7pcBtdSi2hQpH25wAXcXlYzg_/view?usp=sharing" class="btn" target="_blank" onclick="trackProjectView('Nairobi Connect Solutions Analytics', 'operational_analytics')">View Project</a>
+                            <a href="https://github.com/Mr-Akumani/Nairobi-Connect-Solutions-Analysis" class="btn btn-outline" target="_blank" onclick="trackGitHubVisit('Nairobi Connect Documentation', 'project_card')">
                                 <i class="fab fa-github"></i> Documentation
                             </a>
                         </div>
@@ -1116,7 +1232,7 @@
                 </div>
 
                 <!-- Project 3: GhanaLoanConnect - UPDATED -->
-                <div class="project-card">
+                <div class="project-card" data-project-name="GhanaLoanConnect | Credit Risk Analytics" data-project-type="predictive_analytics" data-project-category="risk_modeling">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="GhanaLoanConnect Credit Risk Analytics">
                     </div>
@@ -1132,8 +1248,8 @@
                             <span class="tech-tag">Risk Modeling</span>
                         </div>
                         <div class="project-btns">
-                            <a href="https://drive.google.com/file/d/1Kshz0TsYRU7L8V9sm6ldYc5dzerNuWyz/view?usp=sharing" class="btn" target="_blank" onclick="trackProjectView('GhanaLoanConnect Analytics')">View Project</a>
-                            <a href="https://github.com/Mr-Akumani/loan-default-analysis-ghanaloanconnect" class="btn btn-outline" target="_blank" onclick="trackGitHubVisit('GhanaLoanConnect Documentation')">
+                            <a href="https://drive.google.com/file/d/1Kshz0TsYRU7L8V9sm6ldYc5dzerNuWyz/view?usp=sharing" class="btn" target="_blank" onclick="trackProjectView('GhanaLoanConnect Analytics', 'predictive_analytics')">View Project</a>
+                            <a href="https://github.com/Mr-Akumani/loan-default-analysis-ghanaloanconnect" class="btn btn-outline" target="_blank" onclick="trackGitHubVisit('GhanaLoanConnect Documentation', 'project_card')">
                                 <i class="fab fa-github"></i> Documentation
                             </a>
                         </div>
@@ -1213,13 +1329,13 @@
                     </div>
                     
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/in/bernard-akumani-7281991a7" class="social-link" target="_blank" onclick="trackSocialClick('LinkedIn')">
+                        <a href="https://www.linkedin.com/in/bernard-akumani-7281991a7" class="social-link" target="_blank" onclick="trackSocialClick('LinkedIn', 'contact_section')">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a href="https://github.com/Mr-Akumani" class="social-link" target="_blank" onclick="trackGitHubVisit('Portfolio GitHub')">
+                        <a href="https://github.com/Mr-Akumani" class="social-link" target="_blank" onclick="trackGitHubVisit('Portfolio GitHub', 'contact_section')">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="mailto:akumanibernard17@gmail.com" class="social-link" onclick="trackEmailClick()">
+                        <a href="mailto:akumanibernard17@gmail.com" class="social-link" onclick="trackEmailClick('contact_section')">
                             <i class="fas fa-envelope"></i>
                         </a>
                     </div>
@@ -1293,79 +1409,6 @@
     </footer>
 
     <script>
-        // ===== GOOGLE ANALYTICS TRACKING FUNCTIONS =====
-        function trackNavClick(section) {
-            gtag('event', 'navigation_click', {
-                'event_category': 'Navigation',
-                'event_label': section,
-                'value': 1
-            });
-        }
-
-        function trackProjectView(projectName) {
-            gtag('event', 'project_view', {
-                'event_category': 'Projects',
-                'event_label': projectName,
-                'value': 1
-            });
-        }
-
-        function trackGitHubVisit(projectName) {
-            gtag('event', 'github_visit', {
-                'event_category': 'GitHub',
-                'event_label': projectName,
-                'value': 1
-            });
-        }
-
-        function trackCVDownload(location) {
-            gtag('event', 'cv_download', {
-                'event_category': 'CV Downloads',
-                'event_label': location,
-                'value': 1
-            });
-        }
-
-        function trackSocialClick(platform) {
-            gtag('event', 'social_click', {
-                'event_category': 'Social Media',
-                'event_label': platform,
-                'value': 1
-            });
-        }
-
-        function trackEmailClick() {
-            gtag('event', 'email_click', {
-                'event_category': 'Contact',
-                'event_label': 'Email',
-                'value': 1
-            });
-        }
-
-        function trackServiceClick(service) {
-            gtag('event', 'service_click', {
-                'event_category': 'Services',
-                'event_label': service,
-                'value': 1
-            });
-        }
-
-        function trackButtonClick(buttonName) {
-            gtag('event', 'button_click', {
-                'event_category': 'CTA Buttons',
-                'event_label': buttonName,
-                'value': 1
-            });
-        }
-
-        function trackFormSubmission() {
-            gtag('event', 'form_submission', {
-                'event_category': 'Contact',
-                'event_label': 'Contact Form',
-                'value': 1
-            });
-        }
-
         // ===== EXISTING FUNCTIONALITY =====
         // Mobile menu toggle functionality
         document.getElementById('menuToggle').addEventListener('click', function() {
@@ -1471,6 +1514,208 @@
                 }
             });
         });
+
+        // ===== ENHANCED PORTFOLIO ANALYTICS - COMPREHENSIVE CLICK TRACKING =====
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Track all project card clicks (entire card)
+            document.querySelectorAll('.project-card').forEach((card, index) => {
+                card.addEventListener('click', function(e) {
+                    // Don't track if clicking actual buttons (they have their own tracking)
+                    if (e.target.tagName === 'A' || e.target.closest('a')) return;
+                    
+                    const projectTitle = this.querySelector('.project-title')?.textContent || `Project ${index + 1}`;
+                    const projectType = this.getAttribute('data-project-type') || 'data_analysis';
+                    const projectCategory = this.getAttribute('data-project-category') || 'portfolio_project';
+                    
+                    trackPortfolioEvent('project_card_click', {
+                        'event_label': projectTitle,
+                        'project_position': index + 1,
+                        'click_location': 'project_grid',
+                        'interaction_type': 'card_click',
+                        'project_type': projectType,
+                        'project_category': projectCategory
+                    });
+                });
+            });
+
+            // Track project view button clicks with enhanced parameters
+            document.querySelectorAll('a[onclick*="trackProjectView"]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const projectName = this.getAttribute('onclick').match(/'([^']+)'/)?.[1] || 'Unknown Project';
+                    const projectType = this.closest('.project-card')?.getAttribute('data-project-type') || 'data_analysis';
+                    
+                    trackProjectView(projectName, projectType);
+                });
+            });
+
+            // Track all external links (GitHub, LinkedIn, etc.)
+            document.querySelectorAll('a[href*="github"], a[href*="linkedin"], a[href*="drive.google.com"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    let eventType = 'external_link_click';
+                    let label = 'External Link';
+                    
+                    if (href.includes('github.com')) {
+                        eventType = 'github_visit';
+                        label = this.textContent.includes('Documentation') ? 'GitHub Documentation' : 'GitHub Profile';
+                    } else if (href.includes('linkedin.com')) {
+                        eventType = 'social_click';
+                        label = 'LinkedIn Profile';
+                    } else if (href.includes('drive.google.com')) {
+                        eventType = 'cv_download';
+                        label = 'CV/Resume Download';
+                    }
+                    
+                    trackPortfolioEvent(eventType, {
+                        'event_label': label,
+                        'link_url': href,
+                        'link_text': this.textContent.trim(),
+                        'link_location': this.closest('section')?.id || 'unknown'
+                    });
+                });
+            });
+
+            // Enhanced form tracking
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                // Track form start (first interaction)
+                let formStarted = false;
+                contactForm.querySelectorAll('input, textarea').forEach(field => {
+                    field.addEventListener('focus', function() {
+                        if (!formStarted) {
+                            trackFormStart();
+                            formStarted = true;
+                        }
+                        trackFormFieldFocus(this.name || this.id);
+                    });
+                });
+
+                // Track individual field interactions
+                contactForm.addEventListener('submit', function(e) {
+                    // Count filled fields
+                    const filledFields = Array.from(this.elements).filter(el => 
+                        (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') && el.value.trim()
+                    ).length;
+                    
+                    trackFormSubmission();
+                    trackPortfolioEvent('form_completion_metrics', {
+                        'event_label': 'Form Completion Data',
+                        'fields_filled': filledFields,
+                        'total_fields': this.elements.length,
+                        'completion_rate': (filledFields / this.elements.length * 100).toFixed(2)
+                    });
+                });
+            }
+
+            // Track section visibility with enhanced parameters
+            const sections = document.querySelectorAll('section[id]');
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionName = entry.target.id;
+                        const timeInView = new Date().toISOString();
+                        
+                        trackPortfolioEvent('section_view', {
+                            'event_label': sectionName,
+                            'section_name': sectionName,
+                            'view_timestamp': timeInView,
+                            'visibility_percentage': Math.round(entry.intersectionRatio * 100),
+                            'engagement_type': 'content_view'
+                        });
+                    }
+                });
+            }, { threshold: [0.3, 0.7] }); // Track at 30% and 70% visibility
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+
+            // Track time spent on portfolio
+            let startTime = Date.now();
+            let activeTime = startTime;
+            let maxInactiveTime = 30000; // 30 seconds
+
+            function updateActiveTime() {
+                activeTime = Date.now();
+            }
+
+            // User interaction events
+            ['click', 'scroll', 'keypress', 'mousemove'].forEach(event => {
+                document.addEventListener(event, updateActiveTime, { passive: true });
+            });
+
+            // Send session data before user leaves
+            window.addEventListener('beforeunload', function() {
+                const totalTime = Math.round((Date.now() - startTime) / 1000);
+                const activeDuration = Math.round((activeTime - startTime) / 1000);
+                const inactivityTime = Math.round((Date.now() - activeTime) / 1000);
+                
+                trackPortfolioEvent('session_data', {
+                    'event_label': 'Portfolio Session Summary',
+                    'total_time_seconds': totalTime,
+                    'active_time_seconds': activeDuration,
+                    'inactivity_seconds': inactivityTime,
+                    'pages_visited': 1, // Single page portfolio
+                    'session_engagement': activeDuration > 60 ? 'high' : activeDuration > 30 ? 'medium' : 'low'
+                });
+            });
+
+            // Track device and browser information
+            trackPortfolioEvent('portfolio_visit', {
+                'event_label': 'Portfolio Landing',
+                'user_agent': navigator.userAgent,
+                'viewport_width': window.innerWidth,
+                'viewport_height': window.innerHeight,
+                'referrer': document.referrer || 'direct'
+            });
+        });
+
+        // Enhanced mobile menu tracking
+        document.getElementById('menuToggle')?.addEventListener('click', function() {
+            const isOpen = document.getElementById('navLinks').classList.contains('active');
+            trackPortfolioEvent('mobile_menu_toggle', {
+                'event_label': isOpen ? 'Menu Closed' : 'Menu Opened',
+                'menu_state': isOpen ? 'closed' : 'open',
+                'interaction_type': 'mobile_navigation'
+            });
+        });
+
+        // ===== REAL-TIME ANALYTICS DEBUGGER =====
+        console.log('🚀 PORTFOLIO ANALYTICS DEBUGGER - ACTIVATED');
+        console.log('📊 Open GA4 Real-Time report: https://analytics.google.com/analytics/web/#/realtime/overview');
+        console.log('🔍 Press F12 to see events firing in real-time');
+
+        // Enhanced click logging
+        document.addEventListener('click', function(e) {
+            const target = e.target.closest('a, button, .btn, .project-card, .social-link');
+            if (target) {
+                console.group('🖱️ USER CLICKED');
+                console.log('🔘 Element:', target.tagName, target.className);
+                console.log('📄 Text:', target.textContent?.trim().substring(0, 50) || 'No text');
+                console.log('📍 Section:', target.closest('section')?.id || 'unknown');
+                console.log('🔗 HREF:', target.href || 'No link');
+                console.groupEnd();
+            }
+        });
+
+        // Enhanced scroll logging
+        let lastSection = '';
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2) {
+                    if (section.id !== lastSection) {
+                        console.log('📜 SCROLLED TO SECTION:', section.id);
+                        lastSection = section.id;
+                    }
+                }
+            });
+        });
+
+        console.log('✅ Debugger Ready - Test your portfolio and watch this console!');
+        console.log('💡 Pro Tip: Keep this console open (F12) while testing');
     </script>
 </body>
 </html>
